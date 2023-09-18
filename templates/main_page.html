@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDoDooLer</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<section class="todo">
+<h1>Your tasks: </h1>
+    {{ range . }}
+    <ul> Название:{{.Name }}
+    <li> Время создания:{{.DateTime.Format "02 January 2006, 15:04:05" }}</li>
+    {{if not .Solved }} <li> Статус: Не выполнено</li>
+    {{else }} <li> Статус: Выполнено</li>
+    {{ end }}
+    </ul>
+    {{ end }}
+</section>
+</body>
+</html>
