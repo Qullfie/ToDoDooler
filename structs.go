@@ -1,15 +1,13 @@
 package main
 
-import "time"
-
 type Task struct {
-	Name     string
-	DateTime time.Time
-	Solved   bool
+	Id     uint
+	Aim    string
+	Solved bool
 }
 
-func (t *Task) ChangeName(new_name string) {
-	t.Name = new_name
+func (t *Task) ChangeAim(new_aim string) {
+	t.Aim = new_aim
 }
 
 func (t *Task) SolveTask() {

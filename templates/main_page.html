@@ -7,15 +7,16 @@
 </head>
 <body>
 <section class="todo">
-<h1>Your tasks: </h1>
+    <h1>Ваш список задач</h1>
     {{ range . }}
-    <ul> Название:{{.Name }}
-    <li> Время создания:{{.DateTime.Format "02 January 2006, 15:04:05" }}</li>
-    {{if not .Solved }} <li> Статус: Не выполнено</li>
-    {{else }} <li> Статус: Выполнено</li>
+    <ul>
+    <li>Цель: {{ .Aim }}</li>
+    {{if not .Solved }} <li>Статус: Не выполнено</li>
+    {{ else }} <li>Статус: Выполнено</li>
     {{ end }}
     </ul>
-    {{ end }}
+{{ end }}
+    <a href="create_aim"><button>Создать новую цель</button></a>
 </section>
 </body>
 </html>
