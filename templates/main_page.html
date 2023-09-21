@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>ToDoDooLer</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="static/css/new_style.css">
 </head>
 <body>
 <section class="todo">
@@ -11,8 +11,16 @@
     {{ range . }}
     <ul>
     <li>Цель: {{ .Aim }}</li>
-    {{if not .Solved }} <li>Статус: Не выполнено</li>
-    {{ else }} <li>Статус: Выполнено</li>
+    {{if not .Solved }} <li class = "task_incomplete">Статус: Не выполнено</li>
+        <form action="/solve_task" method = "post">
+            <input type="hidden" name = "taskID" value = "{{.Id}}">
+            <button type="submit">Отметить выполненной</button>
+        </form>
+    {{ else }} <li class = "task_complete">Статус: Выполнено</li>
+        <form action="/delete_task" method = "post">
+            <input type="hidden" name = "taskID", value = "{{.Id}}">
+            <button type = "submit" >Удалить цель</button>
+        </form>
     {{ end }}
     </ul>
 {{ end }}

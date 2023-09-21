@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.todo {
+    width: 50%; /* Ширина блока в половину ширины окна браузера */
+    background-color: lightblue; /* Цвет фона блока, замените на нужный вам цвет */
+
+}
+.todo_header{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.task_complete{
+    color:darkgreen;
+}
+
+.task_incomplete{
+    color:darkred;
+}
+
+
+.button {
+    display: inline-block;
+    padding: 10px 20px; /* Размеры кнопки (по вашему выбору) */
+    background-color: #007BFF; /* Цвет фона кнопки */
+    color: #ffffff; /* Цвет текста кнопки */
+    border: none;
+    border-radius: 5px; /* Скругление углов кнопки */
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px; /* Размер шрифта (по вашему выбору) */
+}
+
+/* Стили при наведении курсора */
+.button:hover {
+    background-color: #0056b3; /* Цвет фона при наведении */
+}
+
+/* Стили при нажатии */
+.button:active {
+    background-color: #004399; /* Цвет фона при нажатии */
+}

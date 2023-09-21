@@ -45,7 +45,7 @@ func create_aim(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, nil)
 }
 
-func save_article(w http.ResponseWriter, r *http.Request) {
+func save_aim(w http.ResponseWriter, r *http.Request) {
 	db, err := sql.Open("mysql", "mysql:mysql@tcp(127.0.0.1:3306)/tododooler")
 	if err != nil {
 		panic(err)
@@ -54,7 +54,35 @@ func save_article(w http.ResponseWriter, r *http.Request) {
 	aim := r.FormValue("aim")
 	sql_query := fmt.Sprintf("INSERT INTO task (aim, solved) VALUES ('%s', %d)", aim, 0)
 	db.Query(sql_query)
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+}
 
-	fmt.Fprintf(w, "Цель успешно добавлена!")
+func solve_task(w http.ResponseWriter, r *http.Request) {
+	db, err := sql.Open("mysql", "mysql:mysql@tcp(127.0.0.1:3306)/tododooler")
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+	task_id := r.FormValue("taskID")
+	fmt.Println(task_id)
+	sql_query := fmt.Sprintf("UPDATE task SET solved = 1 WHERE id = %v", task_id)
+	db.Query(sql_query)
 
+	http.Redirect(w, r, "/", http.StatusSeeOther)
+
+}
+
+func delete_task(w http.ResponseWriter, r *http.Request) {
+	db, err := sql.Open("mysql", "mysql:mysql@tcp(127.0.0.1:3306)/tododooler")
+	if err != nil {
+		panic(err)
+	}
+
+	defer db.Close()
+	task_id := r.FormValue("taskID")
+	fmt.Println(task_id)
+	sql_query := fmt.Sprintf("DELETE FROM task WHERE id = %v", task_id)
+	db.Query(sql_query)
+
+	http.Redirect(w, r, "/", http.StatusSeeOther)
 }
